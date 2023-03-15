@@ -14,7 +14,8 @@ class usuario {
 let clave = "usuarios_almacenados";
 let usuarios_registrados = [];
 let password_registrado;
-let mensaje = document.getElementById("msj_login");
+let mensaje_log = document.getElementById("msj_login");
+let mensaje_reg = document.getElementById("msj_registro");
 
 
 function registrarse () {
@@ -24,11 +25,11 @@ function registrarse () {
    let nueva_clave2 = document.getElementById("NuevaClave2").value;
 
    // verifico que el usuario a registrar haya ingresado todos los datos requeridos
-   // aca no se si conviene validarlos con js o directamente en el HTML con la propiedad required.
+  
+   // aca no se si conviene validarlos con js o directamente en el HTML con la propiedad required.//
    if (nuevo_usuario == "" || nueva_clave == "" || nueva_clave2 == ""){
 
-      let mensaje = document.getElementById("msj_registro");
-      mensaje.innerHTML = `El usuario y/o la contraseña no pueden estar vacios`;
+      mensaje_reg.innerHTML = `El usuario y/o la contraseña no pueden estar vacios`;
 
    }
    else{
@@ -50,28 +51,25 @@ function registrarse () {
 
          // cuando el usuario ya existe
          if (usuario_existente == true){
-            let mensaje = document.getElementById("msj_registro");
-            mensaje.innerHTML = `El usuario ya existe, elija otro`;
+            mensaje_reg.innerHTML = `El usuario ya existe, elija otro`;
             document.getElementById("NuevoUsuario").value = "";
             document.getElementById("NuevaClave").value = "";
             document.getElementById("NuevaClave2").value = "";
-            //document.getElementById("NuevoUsuario").focus;
          }
          else{
          // cuando el usuario no esta registrado, verifico que las claves ingresadas coincidan
             if (nueva_clave !== nueva_clave2){
-               let mensaje = document.getElementById("msj_registro");
-               mensaje.innerHTML = `Las claves no coinciden. Reingreselas`;
+               mensaje_reg.innerHTML = `Las claves no coinciden. Reingreselas`;
                document.getElementById("NuevaClave").value = "";
                document.getElementById("NuevaClave2").value = "";
             }
             else {
-               // registro el usuario en el array y lo almaceno en el storage
-               let mensaje = document.getElementById("msj_registro");
-               mensaje.innerHTML = `<p class="msj_ok">Usuario registrado correctamente. Inicie sesion</p>`;
+               // todo validado ok. registro el usuario en el array y lo almaceno en el storage
+               mensaje_reg.innerHTML = `<p class="msj_ok">Usuario registrado correctamente. Inicie sesion</p>`;
                let usuario_nuevo = new usuario (nuevo_usuario, nueva_clave);
                usuarios_registrados.push (usuario_nuevo);
                localStorage.setItem (clave, JSON.stringify(usuarios_registrados));
+
                document.getElementById("NuevoUsuario").value = "";
                document.getElementById("NuevaClave").value = "";
                document.getElementById("NuevaClave2").value = "";
@@ -83,14 +81,12 @@ function registrarse () {
       // este bloque solo una vez hasta que se almacene el primer usuario en el storage.
 
       if (nueva_clave !== nueva_clave2){
-         let mensaje = document.getElementById("msj_registro");
-         mensaje.innerHTML = `Las claves no coinciden. Reingreselas`;
+         mensaje_reg.innerHTML = `Las claves no coinciden. Reingreselas`;
          document.getElementById("NuevaClave").value = "";
          document.getElementById("NuevaClave2").value = "";
          }
       else {
-         let mensaje = document.getElementById("msj_registro");
-         mensaje.innerHTML = `<p class="msj_ok">Usuario registrado correctamente. Inicie sesion</p>`;
+         mensaje_reg.innerHTML = `<p class="msj_ok">Usuario registrado correctamente. Inicie sesion</p>`;
          let usuario_nuevo = new usuario (nuevo_usuario, nueva_clave);
          usuarios_registrados.push (usuario_nuevo);
          localStorage.setItem (clave, JSON.stringify(usuarios_registrados));
@@ -102,19 +98,19 @@ function registrarse () {
    };
 };
 
-
  function ingresar () {
       let user = document.getElementById("NombreUsuario").value;
       let password = document.getElementById("ClaveUsuario").value;
 
    if (localStorage.getItem ("usuarios_almacenados") !== null){
+
       //traigo los usuarios registrados desde el storage
       usuarios_registrados = JSON.parse(localStorage.getItem("usuarios_almacenados"));
+
       let usuario_existente = false;
 
       if (user == "" || password == ""){
-         //let mensaje = document.getElementById("msj_login");
-         mensaje.innerHTML = `Ingrese usuario y contraseña`;
+         mensaje_log.innerHTML = `Ingrese usuario y contraseña`;
       }
       else{
          for (let item  of usuarios_registrados){
@@ -125,32 +121,29 @@ function registrarse () {
             break;
             }
          };
+
          if (usuario_existente == false){
-            //let mensaje = document.getElementById("msj_login");
-            mensaje.innerHTML = `El usuario no existe. Por favor verifíquelo o  registrese`;
+            mensaje_log.innerHTML = `El usuario no existe. Por favor verifíquelo o registrese`;
          }
          else{
-            //let mensaje = document.getElementById("msj_login");
-            //mensaje.innerHTML = `<p class="msj_ok">Bienvenido al sistema</p>`;
             if(password == password_registrado){
-               console.log(user);
                sessionStorage.setItem("usuario_activo", user);
-               mensaje.innerHTML = `Bienvenido`;
-               window.location.replace("/pages/main.html");
+               mensaje_log.innerHTML = `Bienvenido`;
+               window.location.href = "/pages/main.html";
             }
             else{
-               
-               mensaje.innerHTML = `La clave ingresada es incorrecta.`;
+               mensaje_log.innerHTML = `La clave ingresada es incorrecta.`;
             }
          }
-
       };
       
    }
    else{
-      alert("no hay usuarios registrados");
+      mensaje_log.innerHTML = `No hay usuarios registrados. Regtrese`;
    };
-   };
+   
+
+};
 
 
  let btn_ingresar = document.getElementById("btnIngresar");

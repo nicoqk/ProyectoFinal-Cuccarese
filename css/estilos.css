@@ -1,5 +1,17 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
+
+/*        Estilos Index       */
+
+body {
+  background: #76b852;
+  background: rgb(141,194,111);
+  background: linear-gradient(90deg, rgba(141,194,111,1) 0%, rgba(118,184,82,1) 50%);
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;      
+}
+
 .login-page {
   width: 360px;
   padding: 5% 0 0;
@@ -81,7 +93,7 @@
   display: block;
   clear: both;
 }
-.container .info {
+/*.container .info {
   margin: 50px auto;
   text-align: center;
 }
@@ -103,19 +115,15 @@
 }
 .container .info span .fa {
   color: #EF3B3A;
-}
-body {
-  background: #76b852; /* fallback for old browsers */
-  background: rgb(141,194,111);
-  background: linear-gradient(90deg, rgba(141,194,111,1) 0%, rgba(118,184,82,1) 50%);
-  font-family: "Roboto", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;      
-}
- 
+}*/
+
+
+/*        Estilos Main       */
+
 td{
-  height: 5px;
+  height: 2px;
   text-align: center;
+  margin: 5px;
 }
 
 h1 h2{
@@ -124,25 +132,26 @@ h1 h2{
 }
 
 #muestroDatos{
-
-  width: 75%; 
+  width: 50%; 
+  margin: 5px;
 }
 
 #ingresoDatos{
-  width: 25%;
+  width: 20%;
+  margin: 5px;
 }
-
+#VerEstadisticas{
+  width: 30%;
+}
 #contenedorPadre{
-
 display:flex;
 }
 
 button{
 width: 100px;
-font-size: 14px;;
+font-size: 12px;;
 }
 
 input{
 width: 200px;
-
 };

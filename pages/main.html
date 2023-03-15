@@ -5,61 +5,63 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calcular promedios</title>
-   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/estilos.css">
 
 </head>
 
 <body>
 
-  <h1>Sistema de cálculo de promedios de Alumnos.</h1>
-  <p>Ingrese el nombre del alumno, la cantidad de inasistencias y las notas de cada trimestre. Presione INGRESAR para finalizar la carga de datos. Luego de cargar a todos los alumnos, presione CALCULAR para obtener los promedios anuales.</p>
+  <h2>Sistema de cálculo de promedios de Alumnos.</h2>
+  <p>
+    Ingrese el nombre del alumno, la cantidad de inasistencias y las notas de cada trimestre. Presione INGRESAR para finalizar la carga de datos. Luego de cargar a todos los alumnos, presione CALCULAR para obtener los promedios anuales.
+  </p>
   <hr>
 
     <div id="contenedorPadre">
       
-      <div class="container" id="ingresoDatos">
-
-        <h2>Ingreso de datos</h2>
-        
-        <input type="text" placeholder="Nombre del alumno" id="nombreAlumno"><br><br>
-        
-        <input type="text" placeholder="Cant de Inasistencias" id="inasistencias"><br><br>
-        
-        <input type="text" placeholder="Nota Primer Trim" id="nota_pri_trim"><br><br>
-        
-        <input type="text" placeholder="Nota Segundo Trim"  id="nota_sec_trim"><br><br>
-       
-        <input type="text" placeholder="Nota Tercer Trim"  id="nota_ter_trim"><br><br>
-
-        <button id="btnIngresar">Ingresar Alumno</button>
-        <button id="btnCalcular">Calcular promedios</button>
-    </div>
-
-    <div class="container" id="muestroDatos">
-        <h2>Informes de alumnos.</h2>
-        <table class="table ">
-          <thead>
-            <tr>      
-              <td>Alumno</td>
-              <td>Inasistencias</td>
-              <td>1er Trim</td>
-              <td>2do Trim</td>
-              <td>3er Trim</td>
-              <td>Promedio</td>
-              <td>Estado</td>                  
-            </tr>
-          </thead>
-          <tbody id="tbody">
-            
-          </tbody>
-        </table>
-        
+        <div class="" id="ingresoDatos">
+            <h4>Ingreso de datos</h4>
+            <input type="text" placeholder="Nombre del alumno" id="nombreAlumno">
+            <input type="text" placeholder="Cant de Inasistencias" id="inasistencias">
+            <input type="text" placeholder="Nota 1er Trimestre" id="nota_pri_trim">
+            <input type="text" placeholder="Nota 2do Trimestre"  id="nota_sec_trim">
+            <input type="text" placeholder="Nota 3er Trimestre"  id="nota_ter_trim">
+            <button id="btnIngresar">Ingresar Alumno</button>
+            <button id="btnCalcular">Calcular promedios</button>
+            <button id="btnEstadisticas">Estadisticas</button>
       </div>
+
+      <div class="muestro" id="muestroDatos">
+            <h4>Informes de alumnos.</h4>
+            <table class="table">
+              <thead>
+                <tr>      
+                  <td>Alumno</td>
+                  <td>Inasistencias</td>
+                  <td>1er Trim</td>
+                  <td>2do Trim</td>
+                  <td>3er Trim</td>
+                  <td>Promedio</td>
+                  <td>Estado</td>                  
+                 </tr>
+              </thead>
+
+              <tbody id="tbody">
+              
+              </tbody>
+          </table>
+          
+        </div>
+
+        <div class="estadisticas" id="VerEstadicticas">
+          <h4>Estadisticas</h4>
+        </div>
     </div>
+
+
 
     <script src="../js/promedios.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

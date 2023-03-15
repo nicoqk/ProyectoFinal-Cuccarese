@@ -41,6 +41,12 @@ function ingresar_alumno(){
 
     mostrar_alumnos();
 
+    nombre.value = "";
+    faltas.value = "";
+    pri_trim.value = "";
+    sec_trim.value = "";
+    ter_trim.value = "";
+    nombre.focus;
     //guardo el array, ya con los promedios y el estado del alumno, en el storage local.
     let clave = "alumnos_almacenados"
     localStorage.setItem (clave, JSON.stringify(lista_alumnos));
@@ -99,6 +105,53 @@ function mostrar_alumnos(){
     }
 };
 
+function mostrar_estadisticas(){
+    
+    let cant_alumnos = lista_alumnos.length;
+    let alumno_mayor_prom = "";
+    let promedio_mayor = 0;
+    let promedio_menor = 10;
+    let cant_promociona = 0;
+    let cant_recupera = 0;
+    let cant_recursa = 0;
+    let cant_libre = 0;
+
+    
+    for (item of lista_alumnos){
+       
+        if (item.estado == "PROMOCIONA"){
+            cant_promociona ++
+        }
+        else if (item.estado == "RECUPERA"){
+                cant_recupera ++
+            
+        }
+        else if(item.estado == "RECURSA"){
+            cant_recursa ++
+        }
+        else if (item.estado == "LIBRE"){
+            cant_libre ++
+        };
+        if (item.promedio > promedio_mayor){
+            promedio_mayor = parseFloat(item.promedio);
+            alumno_mayor_prom = item.nombre_alumno;   
+        }
+        if (item.promedio <promedio_menor){
+            promedio_menor = parseFloat(item.promedio);
+        }
+    }
+    console.log("CANT ALUMNOS",cant_alumnos);
+    console.log("pROMOCIONAN", cant_promociona);
+    console.log("RECUPERAN",cant_recupera);
+    console.log("RECURSAN",cant_recursa);
+    console.log("LIBRES", cant_libre);
+    console.log(lista_alumnos);
+    console.log("el mayor promedio es", promedio_mayor);
+    console.log(alumno_mayor_prom);
+    console.log("el menor promedio es", promedio_menor);
+
+};
+
 // capturo btnIngresar y ejecuto función para ingresar alumnos, inasistencias y notas a la tabla html
 let btn_ingresar = document.getElementById("btnIngresar");
 btn_ingresar.addEventListener("click", ingresar_alumno);
@@ -106,3 +159,7 @@ btn_ingresar.addEventListener("click", ingresar_alumno);
 // capturo btnCalcular y ejecuto función para calcular promedios y verificar la situación regular del alumno.
 let btn_calcular = document.getElementById("btnCalcular");
 btn_calcular.addEventListener("click", calcular_promedios);
+
+// capturo btnEstadisticas y ejecuto función para calcular estadisticas utiles al usuario
+let btn_estadisticas = document.getElementById("btnEstadisticas");
+btn_estadisticas.addEventListener("click", mostrar_estadisticas);
