@@ -1,3 +1,5 @@
+let bienvenido = sessionStorage.getItem("usuario_activo");
+
 let nombre_alumno, inasistencias, nota_pri_trim, nota_sec_trim, nota_ter_trim, promedio, estado
 
 //declaro array

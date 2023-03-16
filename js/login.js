@@ -25,8 +25,8 @@ function registrarse () {
    let nueva_clave2 = document.getElementById("NuevaClave2").value;
 
    // verifico que el usuario a registrar haya ingresado todos los datos requeridos
-  
    // aca no se si conviene validarlos con js o directamente en el HTML con la propiedad required.//
+
    if (nuevo_usuario == "" || nueva_clave == "" || nueva_clave2 == ""){
 
       mensaje_reg.innerHTML = `El usuario y/o la contraseña no pueden estar vacios`;
@@ -128,8 +128,8 @@ function registrarse () {
          else{
             if(password == password_registrado){
                sessionStorage.setItem("usuario_activo", user);
-               mensaje_log.innerHTML = `Bienvenido`;
-               window.location.href = "/pages/main.html";
+               window.location.href = "../pages/main.html";
+               alert("bienvenido");
             }
             else{
                mensaje_log.innerHTML = `La clave ingresada es incorrecta.`;
@@ -144,7 +144,6 @@ function registrarse () {
    
 
 };
-
 
  let btn_ingresar = document.getElementById("btnIngresar");
  btn_ingresar.addEventListener("click", ingresar);
