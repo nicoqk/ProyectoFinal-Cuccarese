@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calcular promedios</title>
-
     <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
 </head>
 
 <body>
-  <p id="bienvenida">Hola</p>
+  <p id="usrBienvenido">Bienvenido</p>
   <h2>Sistema de cálculo de promedios de Alumnos.</h2>
   <p class="instrucciones">
     Ingrese el nombre del alumno, la cantidad de inasistencias y las notas de cada trimestre. Presione INGRESAR ALUMNO para finalizar la carga de datos. Luego de cargar a todos los alumnos, presione CALCULAR PROMEDIO para obtener los promedios anuales. Para obtener estadisticas detalladas, presione el botón ESTADISTICAS
@@ -21,19 +21,19 @@
     <div id="contenedorPadre">
       
         <div class="" id="ingresoDatos">
-            <h4>Ingreso de datos</h4>
-            <input type="text" placeholder="Nombre del alumno" id="nombreAlumno">
-            <input type="text" placeholder="Cant de Inasistencias" id="inasistencias">
-            <input type="text" placeholder="Nota 1er Trimestre" id="nota_pri_trim">
-            <input type="text" placeholder="Nota 2do Trimestre"  id="nota_sec_trim">
-            <input type="text" placeholder="Nota 3er Trimestre"  id="nota_ter_trim">
+            <h4>Datos de alumnos</h4>
+            <input type="text" placeholder="Nombre del alumno" id="nombreAlumno" >
+            <input type="text" placeholder="Cant de Inasistencias" id="inasistencias" >
+            <input type="text" placeholder="Nota 1er Trimestre" id="nota_pri_trim" >
+            <input type="text" placeholder="Nota 2do Trimestre"  id="nota_sec_trim" >
+            <input type="text" placeholder="Nota 3er Trimestre"  id="nota_ter_trim" > 
             <button id="btnIngresar">Ingresar Alumno</button>
             <button id="btnCalcular">Calcular promedios</button>
             <button id="btnEstadisticas">Estadisticas</button>
       </div>
 
       <div class="" id="muestroDatos">
-            <h4>Informes de alumnos.</h4>
+            <h4>Promedios de alumnos.</h4>
             <table class="table">
               <thead>
                 <tr>      
@@ -57,12 +57,18 @@
 
         <div id="verEstadisticas">
           <h4>Estadisticas</h4>
+          <p class="titulos" id="alTotales">Cantidad total de Alumnos: </p>
+          <p class="titulos" id="alPromocionados">Alumnos promocionados: </p>
+          <p class="titulos" id="alRecuperatorio">Alumnos a recuperatorio: </p>
+          <p class="titulos" id="alRecursan">Alumnos recursan: </p>
+          <p class="titulos" id="alLibres">Alumnos libres por faltas: </p>
+          <p class="titulos" id="alMayorPromedio">Mayor promedio: </p>
+          <p class="titulos" id="alMenorPromedio">Menor promedio: </p>
         </div>
     </div>
 
 
-
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="../js/promedios.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -28,8 +28,15 @@ function registrarse () {
    // aca no se si conviene validarlos con js o directamente en el HTML con la propiedad required.//
 
    if (nuevo_usuario == "" || nueva_clave == "" || nueva_clave2 == ""){
+      
+      Swal.fire ({
+         title: "Error",
+         text: "El usuario y/o la contraseña no pueden estar vacios",
+         icon: "error",
+         confirmButtonColor: "#43A047",
+      }
+      );
 
-      mensaje_reg.innerHTML = `El usuario y/o la contraseña no pueden estar vacios`;
 
    }
    else{
@@ -51,7 +58,13 @@ function registrarse () {
 
          // cuando el usuario ya existe
          if (usuario_existente == true){
-            mensaje_reg.innerHTML = `El usuario ya existe, elija otro`;
+            Swal.fire ({
+               title: "Atención",
+               text: "El usuario ya existe. Por favor elija otro",
+               icon: "info",
+               confirmButtonColor: "#43A047",
+            }
+            );
             document.getElementById("NuevoUsuario").value = "";
             document.getElementById("NuevaClave").value = "";
             document.getElementById("NuevaClave2").value = "";
@@ -59,13 +72,27 @@ function registrarse () {
          else{
          // cuando el usuario no esta registrado, verifico que las claves ingresadas coincidan
             if (nueva_clave !== nueva_clave2){
-               mensaje_reg.innerHTML = `Las claves no coinciden. Reingreselas`;
+              
+               Swal.fire ({
+                  title: "Error",
+                  text: "Las claves no coinciden Por favor reingréselas",
+                  icon: "error",
+                  confirmButtonColor: "#43A047",
+               }
+               );
                document.getElementById("NuevaClave").value = "";
                document.getElementById("NuevaClave2").value = "";
             }
             else {
                // todo validado ok. registro el usuario en el array y lo almaceno en el storage
-               mensaje_reg.innerHTML = `<p class="msj_ok">Usuario registrado correctamente. Inicie sesion</p>`;
+              
+               Swal.fire ({
+                  title: "Registro correcto",
+                  text: "El usuario " + nuevo_usuario + " se registro correctamente. Inicie sesión",
+                  icon: "success",
+                  confirmButtonColor: "#43A047",
+               }
+               );
                let usuario_nuevo = new usuario (nuevo_usuario, nueva_clave);
                usuarios_registrados.push (usuario_nuevo);
                localStorage.setItem (clave, JSON.stringify(usuarios_registrados));
@@ -81,18 +108,31 @@ function registrarse () {
       // este bloque solo una vez hasta que se almacene el primer usuario en el storage.
 
       if (nueva_clave !== nueva_clave2){
-         mensaje_reg.innerHTML = `Las claves no coinciden. Reingreselas`;
+         Swal.fire ({
+            title: "Error",
+            text: "Las claves no coinciden Por favor reingréselas",
+            icon: "error",
+            confirmButtonColor: "#43A047",
+         }
+         );
          document.getElementById("NuevaClave").value = "";
          document.getElementById("NuevaClave2").value = "";
          }
       else {
-         mensaje_reg.innerHTML = `<p class="msj_ok">Usuario registrado correctamente. Inicie sesion</p>`;
+         
          let usuario_nuevo = new usuario (nuevo_usuario, nueva_clave);
          usuarios_registrados.push (usuario_nuevo);
          localStorage.setItem (clave, JSON.stringify(usuarios_registrados));
          document.getElementById("NuevoUsuario").value = "";
          document.getElementById("NuevaClave").value = "";
          document.getElementById("NuevaClave2").value = "";
+         Swal.fire ({
+            title: "Registro correcto",
+            text: "El usuario " + nuevo_usuario + " se registro correctamente. Inicie sesión",
+            icon: "success",
+            confirmButtonColor: "#43A047",
+         }
+         );
          };
       };
    };
@@ -110,7 +150,13 @@ function registrarse () {
       let usuario_existente = false;
 
       if (user == "" || password == ""){
-         mensaje_log.innerHTML = `Ingrese usuario y contraseña`;
+         Swal.fire ({
+            title: "Atención",
+            text: "Debe ingresar usuario y contraseña",
+            icon: "info",
+            confirmButtonColor: "#43A047",
+         }
+         );
       }
       else{
          for (let item  of usuarios_registrados){
@@ -123,23 +169,52 @@ function registrarse () {
          };
 
          if (usuario_existente == false){
-            mensaje_log.innerHTML = `El usuario no existe. Por favor verifíquelo o registrese`;
+            
+            Swal.fire ({
+               title: "Acceso denegado",
+               text: "Usuario incorrecto o inexistente. Verifíquelo o regístrese",
+               icon: "error",
+               confirmButtonColor: "#43A047",
+            }
+            );
+            
          }
          else{
             if(password == password_registrado){
-               sessionStorage.setItem("usuario_activo", user);
-               window.location.href = "../pages/main.html";
-               alert("bienvenido");
+               sessionStorage.setItem("usuario_activo", user);  
+                        
+               Swal.fire ({
+                  title: "Acceso correcto",
+                  text: "Bienvenido " + user + " al sistema",
+                  icon: "success",
+                  confirmButtonColor: "#43A047",
+               })
+               
+               window.location.href = "../pages/main.html";   
+               
             }
             else{
-               mensaje_log.innerHTML = `La clave ingresada es incorrecta.`;
+              
+              Swal.fire ({
+               title: "Acceso denegado",
+               text: "La clave ingresada es incorrecta. Intente nuevamente",
+               icon: "error",
+               confirmButtonColor: "#43A047",
+            }
+            );
             }
          }
       };
       
    }
    else{
-      mensaje_log.innerHTML = `No hay usuarios registrados. Regtrese`;
+      Swal.fire ({
+         title: "Atención",
+         text: "No hay usuarios registrados. Por favor regístrese ",
+         icon: "info",
+         confirmButtonColor: "#43A047",
+      }
+      );
    };
    
 

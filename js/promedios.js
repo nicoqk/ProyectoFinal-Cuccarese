@@ -1,4 +1,6 @@
-let bienvenido = sessionStorage.getItem("usuario_activo");
+let usuario_activo = sessionStorage.getItem("usuario_activo");
+let bienvenido = document.getElementById("usrBienvenido");
+bienvenido.innerHTML = 'Hola ' + usuario_activo + ', bienvenido al sistema.';
 
 let nombre_alumno, inasistencias, nota_pri_trim, nota_sec_trim, nota_ter_trim, promedio, estado
 
@@ -49,9 +51,24 @@ function ingresar_alumno(){
     sec_trim.value = "";
     ter_trim.value = "";
     nombre.focus;
+
     //guardo el array, ya con los promedios y el estado del alumno, en el storage local.
     let clave = "alumnos_almacenados"
     localStorage.setItem (clave, JSON.stringify(lista_alumnos));
+    Toastify({
+
+        text: "Alumno Agregado",
+        duration: 800,
+        gravity: "bottom",
+       position: "left",
+        style: {
+            background: "linear-gradient(to right, #4CAF50, #43A047)",
+          },
+          offset: { 
+            y: 180,
+          },
+        
+        }).showToast();
 };
 
 //Calcula los promedios y el estado de los alumnos y agrega esos datos al array de objetos alumno y almacena en el storage
@@ -117,7 +134,6 @@ function mostrar_estadisticas(){
     let cant_recupera = 0;
     let cant_recursa = 0;
     let cant_libre = 0;
-
     
     for (item of lista_alumnos){
        
@@ -142,16 +158,27 @@ function mostrar_estadisticas(){
             promedio_menor = parseFloat(item.promedio);
         }
     }
-    console.log("CANT ALUMNOS",cant_alumnos);
-    console.log("pROMOCIONAN", cant_promociona);
-    console.log("RECUPERAN",cant_recupera);
-    console.log("RECURSAN",cant_recursa);
-    console.log("LIBRES", cant_libre);
-    console.log(lista_alumnos);
-    console.log("el mayor promedio es", promedio_mayor);
-    console.log(alumno_mayor_prom);
-    console.log("el menor promedio es", promedio_menor);
 
+    let total_alumnos = document.getElementById("alTotales");
+    total_alumnos.innerHTML = 'Cantidad total de Alumnos: ' + cant_alumnos;
+
+    let total_promocionan = document.getElementById("alPromocionados");
+    total_promocionan.innerHTML = 'Alumnos promocionados: ' + cant_promociona;
+
+    let total_recuperan = document.getElementById("alRecuperatorio");
+    total_recuperan.innerHTML = 'Alumnos a recuperatorio: ' + cant_recupera;
+
+    let total_recursan = document.getElementById("alRecursan");
+    total_recursan.innerHTML = 'Alumnos promocionados: ' + cant_recursa;
+
+    let total_libres = document.getElementById("alLibres");
+    total_libres.innerHTML = 'Alumnos libres por faltas: ' + cant_libre;
+
+    let mayor_promedio = document.getElementById("alMayorPromedio");
+    mayor_promedio.innerHTML = 'Mayor promedio: ' + promedio_mayor;
+
+    let menor_promedio = document.getElementById("alMenorPromedio");
+    menor_promedio.innerHTML = 'Menor promedio: ' + promedio_menor;
 };
 
 // capturo btnIngresar y ejecuto función para ingresar alumnos, inasistencias y notas a la tabla html

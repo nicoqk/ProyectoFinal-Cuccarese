@@ -96,12 +96,13 @@ body {
 
 
 /*        Estilos Main       */
-  #bienvenida{
+  #usrBienvenido{
     background-color: #000;
     color: #fff;
     margin: 0;
     padding: 5px;
-    font-size: .8rem;
+    font-size: .7rem;
+    font-weight: bold;
   }
 
 .instrucciones{
@@ -129,6 +130,37 @@ h1 h2 h4{
   margin: 5px;
   text-align: center;
   background-color:#fff;
+}
+
+button{
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 90%;
+  border: 0;
+  padding: 15px;
+  font-size: 11px;
+  color: #FFFFFF;
+  margin: 5px 0 5px 0;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+button:hover{
+  background: #43A047;
+}
+
+input{
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 90%;
+  border: 0;
+  margin: 5px 0 5px 0;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 11px;
 }
 
 #muestroDatos{
@@ -169,38 +201,15 @@ tr:nth-child(even){
 #verEstadisticas{
   width: 35%;
   margin: 5px;
-  text-align: center;
+  text-align: left;
   background-color:#fff;
 }
 
-
-button{
-  font-family: "Roboto", sans-serif;
-  text-transform: uppercase;
-  outline: 0;
-  background: #4CAF50;
-  width: 90%;
-  border: 0;
-  padding: 15px;
-  font-size: 11px;
-  color: #FFFFFF;
-  margin: 5px 0 5px 0;
-  -webkit-transition: all 0.3 ease;
-  transition: all 0.3 ease;
-  cursor: pointer;
-}
-button:hover{
-  background: #43A047;
+.titulos{
+  margin: 5px;
+  padding: 10px 5px;
+  font-size: .7rem;
+  background-color: #43A047;
+  color:#fff;
 }
 
-input{
-  font-family: "Roboto", sans-serif;
-  outline: 0;
-  background: #f2f2f2;
-  width: 90%;
-  border: 0;
-  margin: 5px 0 5px 0;
-  padding: 10px;
-  box-sizing: border-box;
-  font-size: 11px;
-}
