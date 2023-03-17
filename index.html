@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/estilos.css">
     
@@ -12,6 +13,13 @@
     <div class="login-page">
         <div class="formulario">
 
+          <form class="login-form">
+            <input type="text" id="NombreUsuario" placeholder="Nombre de usuario."/>
+            <input type="password" id="ClaveUsuario" placeholder="Contraseña."/>
+            <button id="btnIngresar">Ingresar</button>
+            <p class="link_login" id="link_registro">¿No estás registrado?<a href="#"> Registrate aquí</a></p>
+          </form>
+
           <form class="form-registro">
             <input type="text" id="NuevoUsuario" placeholder="Nombre de usuario"/>
             <input type="password" id="NuevaClave" placeholder="Contraseña"/>
@@ -20,12 +28,7 @@
             <p class="link_login" id="link_login">¿Ya estás registrado?<a href="#"> Inicia Sesion</a></p>
           </form>
 
-          <form class="login-form">
-            <input type="text" id="NombreUsuario" placeholder="Nombre de usuario."/>
-            <input type="password" id="ClaveUsuario" placeholder="Contraseña."/>
-            <button id="btnIngresar">Ingresar</button>
-            <p class="link_login" id="link_registro">¿No estás registrado?<a href="#"> Registrate aquí</a></p>
-          </form>
+          
         </div>
       </div>
 

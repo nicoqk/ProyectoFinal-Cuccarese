@@ -1,5 +1,5 @@
 
- 
+
  // objeto usuario que se almacenaran en el array usuarios_registrados [] y el array en el storage;
 class usuario {
    constructor (nuevo_usuario, nueva_clave){
@@ -11,18 +11,20 @@ class usuario {
 let clave = "usuarios_almacenados";
 let usuarios_registrados = [];
 let password_registrado;
-let mensaje_log = document.getElementById("msj_login");
-let mensaje_reg = document.getElementById("msj_registro");
+
+let nod_nuevo_usuario = document.getElementById("NuevoUsuario");
+let nod_nueva_clave = document.getElementById("NuevaClave");
+let nod_nueva_clave2 = document.getElementById("NuevaClave2");
+let nod_usuario = document.getElementById("NombreUsuario");
+let nod_clave = document.getElementById("ClaveUsuario");
 
 
 function registrarse () {
-
-   let nuevo_usuario = document.getElementById("NuevoUsuario").value;
-   let nueva_clave = document.getElementById("NuevaClave").value;
-   let nueva_clave2 = document.getElementById("NuevaClave2").value;
+   let nuevo_usuario = nod_nuevo_usuario.value;
+   let nueva_clave = nod_nueva_clave.value;
+   let nueva_clave2 = nod_nueva_clave2.value;
 
    // verifico que el usuario a registrar haya ingresado todos los datos requeridos
-   // aca no se si conviene validarlos con js o directamente en el HTML con la propiedad required.//
 
    if (nuevo_usuario == "" || nueva_clave == "" || nueva_clave2 == ""){
       
@@ -33,8 +35,7 @@ function registrarse () {
          confirmButtonColor: "#43A047",
       }
       );
-
-
+      nod_nuevo_usuario.focus();
    }
    else{
 
@@ -62,9 +63,11 @@ function registrarse () {
                confirmButtonColor: "#43A047",
             }
             );
-            document.getElementById("NuevoUsuario").value = "";
-            document.getElementById("NuevaClave").value = "";
-            document.getElementById("NuevaClave2").value = "";
+
+            nod_nuevo_usuario.value = "";
+            nod_nueva_clave.value = "";
+            nod_nueva_clave2.value = "";
+            nod_nuevo_usuario.focus();
          }
          else{
          // cuando el usuario no esta registrado, verifico que las claves ingresadas coincidan
@@ -77,14 +80,16 @@ function registrarse () {
                   confirmButtonColor: "#43A047",
                }
                );
-               document.getElementById("NuevaClave").value = "";
-               document.getElementById("NuevaClave2").value = "";
+               nod_nuevo_usuario.value = "";
+               nod_nueva_clave.value = "";
+               nod_nueva_clave2.value = "";
+               nod_nuevo_usuario.focus();
             }
             else {
                // todo validado ok. registro el usuario en el array y lo almaceno en el storage
               
                Swal.fire ({
-                  title: "Registro correcto",
+                  title: "Registro Correcto",
                   text: "El usuario " + nuevo_usuario + " se registro correctamente. Inicie sesión",
                   icon: "success",
                   confirmButtonColor: "#43A047",
@@ -94,9 +99,10 @@ function registrarse () {
                usuarios_registrados.push (usuario_nuevo);
                localStorage.setItem (clave, JSON.stringify(usuarios_registrados));
 
-               document.getElementById("NuevoUsuario").value = "";
-               document.getElementById("NuevaClave").value = "";
-               document.getElementById("NuevaClave2").value = "";
+               nod_nuevo_usuario.value = "";
+               nod_nueva_clave.value = "";
+               nod_nueva_clave2.value = "";
+               nod_nuevo_usuario.focus();
             };
          };
 
@@ -112,19 +118,23 @@ function registrarse () {
             confirmButtonColor: "#43A047",
          }
          );
-         document.getElementById("NuevaClave").value = "";
-         document.getElementById("NuevaClave2").value = "";
+         nod_nuevo_usuario.value = "";
+         nod_nueva_clave.value = "";
+         nod_nueva_clave2.value = "";
+         nod_nuevo_usuario.focus();
          }
       else {
          
          let usuario_nuevo = new usuario (nuevo_usuario, nueva_clave);
          usuarios_registrados.push (usuario_nuevo);
          localStorage.setItem (clave, JSON.stringify(usuarios_registrados));
-         document.getElementById("NuevoUsuario").value = "";
-         document.getElementById("NuevaClave").value = "";
-         document.getElementById("NuevaClave2").value = "";
+         nod_nuevo_usuario.value = "";
+         nod_nueva_clave.value = "";
+         nod_nueva_clave2.value = "";
+         nod_nuevo_usuario.focus();
+
          Swal.fire ({
-            title: "Registro correcto",
+            title: "Registro Correcto",
             text: "El usuario " + nuevo_usuario + " se registro correctamente. Inicie sesión",
             icon: "success",
             confirmButtonColor: "#43A047",
@@ -136,6 +146,7 @@ function registrarse () {
 };
 
  function ingresar () {
+
       let user = document.getElementById("NombreUsuario").value;
       let password = document.getElementById("ClaveUsuario").value;
 
@@ -148,9 +159,9 @@ function registrarse () {
 
       if (user == "" || password == ""){
          Swal.fire ({
-            title: "Atención",
+            title: "Error",
             text: "Debe ingresar usuario y contraseña",
-            icon: "info",
+            icon: "error",
             confirmButtonColor: "#43A047",
          }
          );
@@ -181,18 +192,19 @@ function registrarse () {
                sessionStorage.setItem("usuario_activo", user);  
                         
                Swal.fire ({
-                  title: "Acceso correcto",
+                  title: "Acceso Correcto",
                   text: "Bienvenido " + user + " al sistema",
                   icon: "success",
                   confirmButtonColor: "#43A047",
-               })
-               
-               
-               window.location.replace('pages/main.html');
-               console.log("hola")
-               //window.location.href = "../pages/main.html";   
-               
+
+               }).then((result) => {
+                  if (result.isConfirmed) {
+                     window.location.href = '../pages/main.html'
+                  }
+                })
+
             }
+
             else{
               
               Swal.fire ({
@@ -216,8 +228,6 @@ function registrarse () {
       }
       );
    };
-   
-
 };
 
  let btn_ingresar = document.getElementById("btnIngresar");
@@ -231,4 +241,3 @@ function registrarse () {
 $('.link_login a').click(function(){
    $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
 });
-

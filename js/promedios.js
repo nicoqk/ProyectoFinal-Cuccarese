@@ -1,13 +1,35 @@
+// funcion asincronica
+setTimeout(function(){
+        Toastify({
+            text:"Toasty ",
+            duration:700,
+            gravity:"bottom",
+            position:"right",
+            avatar:"../media/img/toasty.png",
+            style: {
+                background:"none",
+                height: "150px",
+                width: "150px",
+              }, 
+        }).showToast();
+        const audio = new Audio("../media/audio/toasty.mp3");
+        audio.play();
+        console.log(audio);
+        }, 5000);
+
+// traigo el usuario activo capturado en logim para darle la bienvenida
 let usuario_activo = sessionStorage.getItem("usuario_activo");
 let bienvenido = document.getElementById("usrBienvenido");
-bienvenido.innerHTML = 'Hola ' + usuario_activo + ', bienvenido al sistema.';
+bienvenido.innerHTML = 'Usuario activo: ' + usuario_activo + ', bienvenido al sistema.';
+
+
 
 let nombre_alumno, inasistencias, nota_pri_trim, nota_sec_trim, nota_ter_trim, promedio, estado
 
 //declaro array
 let lista_alumnos = [];
 
-//defino el objeto alumno
+//construyo el objeto alumno
 class alumno{
     constructor(nombre_alumno, inasistencias, nota_pri_trim, nota_sec_trim, nota_ter_trim, promedio, estado){
         this.nombre_alumno = nombre_alumno;
@@ -20,7 +42,7 @@ class alumno{
     }
 };
 
-//funcion que captura los datos ingresados en los inputs, almacena en array y en storage y realiza el renderizado del HTML.
+//captura los datos ingresados en los inputs, almacena en array y en storage y realiza el renderizado del HTML.
 function ingresar_alumno(){
 
     //almaceno los nodos obtenidos
@@ -30,6 +52,14 @@ function ingresar_alumno(){
     let sec_trim = document.getElementById("nota_sec_trim");
     let ter_trim = document.getElementById("nota_ter_trim");
    
+    
+
+    if (nombre_alumno == "" || inasistencias == "" || nota_pri_trim == "" ||nota_sec_trim == "" || nota_ter_trim == ""){
+        
+        alert("faltan datos");
+    }
+    else{
+
     //obtengo los datos desde los nodos.
     nombre_alumno = nombre.value;
     inasistencias = parseInt(faltas.value);
@@ -38,6 +68,7 @@ function ingresar_alumno(){
     nota_ter_trim = parseFloat(ter_trim.value);
     promedio = "";
     estado = "";
+        
 
     //creo objeto alumno con datos obtenidos y lo guardo en array
     let nuevo_alumno = new alumno(nombre_alumno, inasistencias, nota_pri_trim, nota_sec_trim, nota_ter_trim, promedio, estado);
@@ -50,28 +81,31 @@ function ingresar_alumno(){
     pri_trim.value = "";
     sec_trim.value = "";
     ter_trim.value = "";
-    nombre.focus;
+    nombre.focus();
 
     //guardo el array, ya con los promedios y el estado del alumno, en el storage local.
     let clave = "alumnos_almacenados"
     localStorage.setItem (clave, JSON.stringify(lista_alumnos));
+    
     Toastify({
 
         text: "Alumno Agregado",
         duration: 800,
         gravity: "bottom",
-       position: "left",
+        position: "left",
         style: {
-            background: "linear-gradient(to right, #4CAF50, #43A047)",
+            color:"#4CAF50",
+            background: "#ffffff",
           },
           offset: { 
             y: 180,
           },
-        
         }).showToast();
+
+    }; 
 };
 
-//Calcula los promedios y el estado de los alumnos y agrega esos datos al array de objetos alumno y almacena en el storage
+//Calcula los promedios y el estado de los alumnos y agrega esos datos al array  y almacena en el storage
 function calcular_promedios(){
 
    lista_alumnos = JSON.parse(localStorage.getItem("alumnos_almacenados")); //obtengo el arreglo desde el storage y lo recorro para calcular los promedios.
@@ -84,7 +118,8 @@ function calcular_promedios(){
         }
         else {
             let promedio = (alumno_actual.nota_pri_trim + alumno_actual.nota_sec_trim + alumno_actual.nota_ter_trim) / 3;
-            promedio = promedio.toFixed(2);   
+            promedio = promedio.toFixed(2);
+
             if (promedio >= 7){
                 alumno_actual.promedio = promedio;
                 alumno_actual.estado = "PROMOCIONA"   
@@ -100,7 +135,6 @@ function calcular_promedios(){
         }
         lista_alumnos.push;
     };
-
     mostrar_alumnos();
 };
 
@@ -134,7 +168,7 @@ function mostrar_alumnos(){
 function borrar_alumno(e){
    
     let abuelo = e.target.parentNode.parentNode;
- 
+
     let alumno_eliminar = abuelo.querySelector("p").textContent;
   
     function eliminar_alumno( lista_alumnos ){
@@ -145,8 +179,6 @@ function borrar_alumno(e){
     let alumnos_filtrados = lista_alumnos.filter( eliminar_alumno );
 
     lista_alumnos = alumnos_filtrados;
-    
-
     mostrar_alumnos()
 }
 
@@ -175,15 +207,15 @@ function mostrar_estadisticas(){
         }
         else if (item.estado == "LIBRE"){
             cant_libre ++
-        };
+        }
         if (item.promedio > promedio_mayor){
             promedio_mayor = parseFloat(item.promedio);
             alumno_mayor_prom = item.nombre_alumno;   
         }
-        if (item.promedio <promedio_menor){
+        if (item.promedio = promedio_menor){
             promedio_menor = parseFloat(item.promedio);
-        }
-    }
+        };
+    };
 
     let total_alumnos = document.getElementById("alTotales");
     total_alumnos.innerHTML = 'Cantidad total de Alumnos: ' + cant_alumnos;
