@@ -5,24 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/estilos.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    
     <title>Calculador de promedios de Alumnos - Login</title>
 </head>
 <body>
     <div class="login-page">
         <div class="formulario">
+
           <form class="form-registro">
-            <p id="msj_registro" class="msj"></p>
             <input type="text" id="NuevoUsuario" placeholder="Nombre de usuario"/>
             <input type="password" id="NuevaClave" placeholder="Contraseña"/>
             <input type="password" id="NuevaClave2" placeholder="Reingrese Contraseña"/>
             <button id="btnRegistrarse">Crear usuario</button>
-            <p class="link_login" id="link_registro">¿Ya estás registrado?<a href="#"> Inicia Sesion</a></p>
+            <p class="link_login" id="link_login">¿Ya estás registrado?<a href="#"> Inicia Sesion</a></p>
           </form>
 
           <form class="login-form">
-            <p id="msj_login" class="msj"></p>
             <input type="text" id="NombreUsuario" placeholder="Nombre de usuario."/>
             <input type="password" id="ClaveUsuario" placeholder="Contraseña."/>
             <button id="btnIngresar">Ingresar</button>
@@ -31,8 +29,8 @@
         </div>
       </div>
 
-
-      
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
       <script src="./js/login.js"></script>
 </body>
 </html>

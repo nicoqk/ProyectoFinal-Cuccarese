@@ -112,17 +112,43 @@ function mostrar_alumnos(){
 
     for (let alumno_actual of lista_alumnos){ 
         let fila = document.createElement("tr");
-        fila.innerHTML = `<td>${alumno_actual.nombre_alumno}</td>
+        fila.innerHTML = `<td><p>${alumno_actual.nombre_alumno}</p></td>
                           <td><p>${alumno_actual.inasistencias}</p></td>
                           <td><p>${alumno_actual.nota_pri_trim}</p></td>
                           <td><p>${alumno_actual.nota_sec_trim}</p></td>
                           <td><p>${alumno_actual.nota_ter_trim}</p></td>
                           <td><p>${alumno_actual.promedio}</p></td>
                           <td><p>${alumno_actual.estado}</p></td>
+                          <td><button class="btn_borrar">X</button></td>
                          `
         tabla.append(fila);
+
+        let boton_borrar = document.querySelectorAll(".btn_borrar");
+
+        for (let btn of boton_borrar){
+            btn.addEventListener("click", borrar_alumno);
+        }
     }
 };
+
+function borrar_alumno(e){
+   
+    let abuelo = e.target.parentNode.parentNode;
+ 
+    let alumno_eliminar = abuelo.querySelector("p").textContent;
+  
+    function eliminar_alumno( lista_alumnos ){
+
+        return lista_alumnos.nombre_alumno != alumno_eliminar
+    }
+
+    let alumnos_filtrados = lista_alumnos.filter( eliminar_alumno );
+
+    lista_alumnos = alumnos_filtrados;
+    
+
+    mostrar_alumnos()
+}
 
 function mostrar_estadisticas(){
     

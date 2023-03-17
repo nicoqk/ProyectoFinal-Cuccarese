@@ -1,7 +1,4 @@
-// funcion jquery cambia entre los forms de login y registro 
-$('.link_login a').click(function(){
-   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
-}); 
+
  
  // objeto usuario que se almacenaran en el array usuarios_registrados [] y el array en el storage;
 class usuario {
@@ -190,7 +187,10 @@ function registrarse () {
                   confirmButtonColor: "#43A047",
                })
                
-               window.location.href = "../pages/main.html";   
+               
+               window.location.replace('pages/main.html');
+               console.log("hola")
+               //window.location.href = "../pages/main.html";   
                
             }
             else{
@@ -225,4 +225,10 @@ function registrarse () {
 
  let btn_registrase = document.getElementById("btnRegistrarse");
  btn_registrase.addEventListener("click", registrarse );
+
+//funcion jquery cambia entre los forms de login y registro 
+
+$('.link_login a').click(function(){
+   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+});
 
