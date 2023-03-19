@@ -231,7 +231,7 @@ function mostrar_estadisticas(){
             promedio_mayor = parseFloat(item.promedio);
             alumno_mayor_prom = item.nombre_alumno;   
         }
-        if (promedio_menor == "" || item.promedio == promedio_menor ){
+        if (promedio_menor == "" || item.promedio < promedio_menor ){
             promedio_menor = parseFloat(item.promedio);
         };
     };
