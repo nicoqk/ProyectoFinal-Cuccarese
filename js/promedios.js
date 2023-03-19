@@ -277,7 +277,7 @@ function mostrar_estadisticas(){
             promedio_mayor = parseFloat(item.promedio);
             alumno_mayor_prom = item.nombre_alumno;   
         }
-        if (promedio_menor == "" || item.promedio < promedio_menor ){
+        if (promedio_menor == "" || item.promedio < promedio_menor || isNaN(promedio_menor)  ){
             promedio_menor = parseFloat(item.promedio);
         };
     };
@@ -292,7 +292,7 @@ function mostrar_estadisticas(){
     total_recuperan.innerHTML = 'Alumnos a recuperatorio: ' + cant_recupera;
 
     let total_recursan = document.getElementById("alRecursan");
-    total_recursan.innerHTML = 'Alumnos promocionados: ' + cant_recursa;
+    total_recursan.innerHTML = 'Alumnos recursantes: ' + cant_recursa;
 
     let total_libres = document.getElementById("alLibres");
     total_libres.innerHTML = 'Alumnos libres por faltas: ' + cant_libre;
