@@ -70,19 +70,36 @@ body {
 }
 
 
-
 /*        Estilos Main       */
+.bienvenida{
+  display: flex;
+  border: #4CAF50 1px dotted;
+
+}
   #usrBienvenido{
-    background-color: #000;
-    color: #fff;
+    background: #f2f2f2;
+    color: #4CAF50;
     margin: 0;
     padding: 5px;
     font-size: .7rem;
     font-weight: bold;
+    width: 50%;
   }
-
+  #fecha{
+    background: #f2f2f2;
+    color: #4CAF50;
+    margin: 0;
+    padding: 5px;
+    font-size: .7rem;
+    font-weight: bold;
+    text-align: right;
+    width: 50%;
+  }
+.titulo{
+  text-align: center;
+}
 .instrucciones{
-  font-size: .8rem;
+  font-size: .7rem;
   color:#000;
 }
 
@@ -93,7 +110,8 @@ td{
 }
 
 h1 h2 h4{
- text-align: center;
+ text-align: c
+ enter;
  color:gray;
 }
 
@@ -191,7 +209,9 @@ tr:nth-child(even){
   text-align: left;
   background-color:#fff;
 }
-
+#verEstadistucas .titulos{
+  text-align: center;
+}
 .titulos{
   margin: 5px;
   padding: 10px 5px;

@@ -199,7 +199,7 @@ function registrarse () {
 
                }).then((result) => {
                   if (result.isConfirmed) {
-                     window.location.href = '../pages/main.html'
+                     window.location.href = 'pages/main.html'
                   }
                 })
 

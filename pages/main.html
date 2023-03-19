@@ -5,19 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calcular promedios</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.2.1/build/global/luxon.min.js"></script>
     <link rel="stylesheet" href="../css/estilos.css">
-    <!--<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">-->
     <link rel="stylesheet" href="../css/toastify.css">
 
 </head>
 
 <body>
-  <p id="usrBienvenido">Bienvenido</p>
-  <h2>Sistema de cálculo de promedios de Alumnos.</h2>
+  <div class="bienvenida">
+    <p id="usrBienvenido"></p>
+    <p id="fecha"></p>
+  </div>
+  <div class="titulo">
+    <h2>Sistema de cálculo de promedios de Alumnos.</h2>
+  </div>
   <p class="instrucciones">
     Ingrese el nombre del alumno, la cantidad de inasistencias y las notas de cada trimestre. Presione INGRESAR ALUMNO para finalizar la carga de datos. Luego de cargar a todos los alumnos, presione CALCULAR PROMEDIO para obtener los promedios anuales. Para obtener estadisticas detalladas, presione el botón ESTADISTICAS
   </p>
-  <hr>
+<hr>
 
     <div id="contenedorPadre">
       
@@ -69,7 +75,8 @@
     </div>
 
 
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    
+    <script src="../js/luxon.js"></script>
     <script src="../js/promedios.js"></script>
 </body>
 </html>
