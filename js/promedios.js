@@ -14,31 +14,26 @@ setTimeout(function(){
     }).showToast();
     let audio = new Audio("../media/audio/toasty.mp3");
     audio.play();
-    }, 30000
+    }, 35000
 ); 
-       
-        let ahora = luxon.DateTime.now().setLocale('es-AR');
-        let formatoArgentino = 'dd/LL/yyyy';
-        let fechaHoraArgentino = ahora.toFormat(formatoArgentino);
+// fecha de hoy
+let ahora = luxon.DateTime.now().setLocale('es-AR');
+let formatoArgentino = 'dd/LL/yyyy';
+let fechaHoraArgentino = ahora.toFormat(formatoArgentino);
 
-        function mostrar_posicion(posicion){
+function mostrar_posicion(posicion){
 
-            let latitud = posicion.coords.latitude;
-            let longitud = posicion.coords.longitude;
-            let llave = "c177c748bc71843b922eb8f0d9bfc991";
+    let latitud = posicion.coords.latitude;
+    let longitud = posicion.coords.longitude;
+    let llave = "c177c748bc71843b922eb8f0d9bfc991";
         
-        
-            fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitud}&lon=${longitud}&appid=${llave}&units=metric&lang=es`)
-                .then( response=> response.json() )
-                .then( data =>{
-                                fecha_clima.innerHTML = `Hoy es ${fechaHoraArgentino}. En ${data.name} la
-                                                           temperatura actual es de ${data.main.temp}°`
-                })
-        }
-           
-        navigator.geolocation.getCurrentPosition(mostrar_posicion);
-
-
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitud}&lon=${longitud}&appid=${llave}&units=metric&lang=es`)
+        .then( response=> response.json() )
+        .then( data =>{
+                    fecha_clima.innerHTML = `Hoy es ${fechaHoraArgentino}. En ${data.name} la temperatura actual es de ${data.main.temp}°`
+        })
+}
+navigator.geolocation.getCurrentPosition(mostrar_posicion);
 
 
 // traigo el usuario activo capturado en login para darle la bienvenida
@@ -86,43 +81,82 @@ function ingresar_alumno(){
     inasistencias = parseInt(faltas.value);
     promedio = "";
     estado = "";
-    
-    //creo un alumno con datos obtenidos y lo guardo en array
-    let nuevo_alumno = new alumno(nombre_alumno, inasistencias, nota_pri_trim, nota_sec_trim, nota_ter_trim, promedio, estado);
-    lista_alumnos.push (nuevo_alumno);
 
-    mostrar_alumnos();
+    if (nombre_alumno == ""){
+        Swal.fire ({
+            text: "Debe ingresar el nombre del Alumno",
+            title: "Atención",
+            icon: "info",
+            confirmButtonColor: "#43A047",
+         })
+    }
+    else{
+        if (isNaN(inasistencias)){
+            Swal.fire ({
+                text: "Debe ingresar la cantidad de inasistencias",
+                title: "Atención",
+                icon: "info",
+                confirmButtonColor: "#43A047",
+             })
+        }
+        else{
+            if (isNaN(nota_pri_trim)|| isNaN(nota_sec_trim) || isNaN(nota_ter_trim)){
+                Swal.fire ({
+                    text: "Debe ingresar las tres notas",
+                    title: "Atención",
+                    icon: "info",
+                    confirmButtonColor: "#43A047",
+                 })
+            }
+            else{
+                if (nota_pri_trim <1 || nota_pri_trim > 10 || nota_sec_trim <1 || nota_sec_trim > 10 || nota_ter_trim <1 || nota_ter_trim > 10) {
+                    Swal.fire ({
+                        text: "Error",
+                        title: "Las notas deben ser un numero entre 1 y 10",
+                        icon: "error",
+                        confirmButtonColor: "#43A047",
+                     })
+                }
+                else {
+                     //creo un alumno con datos obtenidos y lo guardo en array
+                    let nuevo_alumno = new alumno(nombre_alumno, inasistencias, nota_pri_trim, nota_sec_trim, nota_ter_trim, promedio, estado);
+                    lista_alumnos.push (nuevo_alumno);
 
-    nombre.value = "";
-    faltas.value = "";
-    pri_trim.value = "";
-    sec_trim.value = "";
-    ter_trim.value = "";
+                    mostrar_alumnos();
 
-    //guardo el array, con los promedios y el estado del alumno vacios, en el storage local.
-    let clave = "alumnos_almacenados"
-    localStorage.setItem (clave, JSON.stringify(lista_alumnos));
-    
-    Toastify({
+                    nombre.value = "";
+                    faltas.value = "";
+                    pri_trim.value = "";
+                    sec_trim.value = "";
+                    ter_trim.value = "";
 
-        text: "Alumno Agregado",
-        duration: 800,
-        gravity: "bottom",
-        position: "left",
-        style: {
-            color:"#4CAF50",
-            background: "#ffffff",
-            border: '1px solid #4CAF50', 
-          },
-          offset: { 
-            y: 180,
-          },
-        }).showToast();
+                    //guardo el array, con los promedios y el estado del alumno vacios, en el storage local.
+                    let clave = "alumnos_almacenados"
+                    localStorage.setItem (clave, JSON.stringify(lista_alumnos));
+                    
+                    Toastify({
 
-    
+                        text: "Alumno Agregado",
+                        duration: 800,
+                        gravity: "bottom",
+                        position: "left",
+                        style: {
+                            color:"#4CAF50",
+                            background: "#ffffff",
+                            border: '1px solid #4CAF50', 
+                        },
+                        offset: { 
+                            y: 180,
+                        },
+                    }).showToast();
+                }
+            }
+        }
+                        
+    }
 };
 
-//Calcula los promedios y el estado de los alumnos y agrega esos datos al array  y almacena en el storage
+//Calcula los promedios y el estado de los alumnos. Agrega esos datos al array  y almacena en el storage
 function calcular_promedios(){
 
    //obtengo el arreglo desde el storage y lo recorro para calcular los promedios.
@@ -185,7 +219,6 @@ function mostrar_alumnos(){
 };
 
 function borrar_alumno(e){
-   
     let abuelo = e.target.parentNode.parentNode;
     let alumno_eliminar = abuelo.querySelector("p").textContent;
 
@@ -226,8 +259,6 @@ function mostrar_estadisticas(){
     let cant_recursa = 0;
     let cant_libre = 0;
     
-    
-
     for (item of lista_alumnos){
         
         if (item.estado == "PROMOCIONA"){
@@ -278,7 +309,7 @@ function mostrar_estadisticas(){
 let btn_ingresar = document.getElementById("btnIngresar");
 btn_ingresar.addEventListener("click", ingresar_alumno);
 
-// capturo btnCalcular y ejecuto función para calcular promedios y verificar la situación regular del alumno.
+// capturo btnCalcular y ejecuto función para calcular promedios y verificar la situación  del alumno.
 let btn_calcular = document.getElementById("btnCalcular");
 btn_calcular.addEventListener("click", calcular_promedios);
 

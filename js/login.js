@@ -39,7 +39,7 @@ function registrarse () {
    }
    else{
 
-      // verifico que haya usuarios almacenados en el storage
+      // verifico si hayy usuarios almacenados en el storage
       if (localStorage.getItem ("usuarios_almacenados") !== null){
 
          //traigo los usuarios registrados desde el storage
@@ -62,7 +62,7 @@ function registrarse () {
                icon: "info",
                confirmButtonColor: "#43A047",
             }
-            );
+         );
 
             nod_nuevo_usuario.value = "";
             nod_nueva_clave.value = "";
@@ -79,13 +79,14 @@ function registrarse () {
                   icon: "error",
                   confirmButtonColor: "#43A047",
                }
-               );
+            );
                nod_nuevo_usuario.value = "";
                nod_nueva_clave.value = "";
                nod_nueva_clave2.value = "";
                nod_nuevo_usuario.focus();
             }
             else {
+
                // todo validado ok. registro el usuario en el array y lo almaceno en el storage
               
                Swal.fire ({
@@ -94,7 +95,7 @@ function registrarse () {
                   icon: "success",
                   confirmButtonColor: "#43A047",
                }
-               );
+            );
                let usuario_nuevo = new usuario (nuevo_usuario, nueva_clave);
                usuarios_registrados.push (usuario_nuevo);
                localStorage.setItem (clave, JSON.stringify(usuarios_registrados));
@@ -108,7 +109,7 @@ function registrarse () {
 
       }
    else{
-      // este bloque solo una vez hasta que se almacene el primer usuario en el storage.
+      // este bloque solo ejecuta una vez hasta que se almacene el primer usuario en el storage.
 
       if (nueva_clave !== nueva_clave2){
          Swal.fire ({
@@ -237,10 +238,6 @@ function registrarse () {
  btn_registrase.addEventListener("click", registrarse );
 
 //funcion jquery cambia entre los forms de login y registro 
-
-/*$('.link_login a').click(function(){
-   $('div .form-registro').animate({height: "toggle", opacity: "toggle"}, "slow")
-});*/
 
 $(".link_login a").click( function(){
    $("div .login-form").hide();
