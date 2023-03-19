@@ -1,5 +1,4 @@
 
-
  // objeto usuario que se almacenaran en el array usuarios_registrados [] y el array en el storage;
 class usuario {
    constructor (nuevo_usuario, nueva_clave){

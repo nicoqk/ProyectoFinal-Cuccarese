@@ -1,7 +1,6 @@
 //funcion asincronica
 setTimeout(function(){
     Toastify({
-
         duration:700,
         gravity:"bottom",
         position:"right",

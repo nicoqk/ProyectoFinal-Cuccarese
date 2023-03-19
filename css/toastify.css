@@ -58,6 +58,7 @@
     border-radius: 25px;
 }
 
+/* cambie el tamaño por defecto */
 .toastify-avatar {
     width: 200px;
     height: 200px;
