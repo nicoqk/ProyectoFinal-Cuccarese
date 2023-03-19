@@ -238,6 +238,22 @@ function registrarse () {
 
 //funcion jquery cambia entre los forms de login y registro 
 
-$('.link_login a').click(function(){
-   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+/*$('.link_login a').click(function(){
+   $('div .form-registro').animate({height: "toggle", opacity: "toggle"}, "slow")
+});*/
+
+$(".link_login a").click( function(){
+   $("div .login-form").hide();
+   $("div .form-registro").show();
 });
+
+$(".link_registro a").click( function(){
+   $("div .login-form").show();
+   $("div .form-registro").hide();
+});
+
+
+
+
+
+

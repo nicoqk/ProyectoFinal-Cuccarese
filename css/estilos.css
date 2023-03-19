@@ -65,6 +65,17 @@ body {
   color: #4CAF50;
   text-decoration: none;
 }
+
+.formulario .link_registro {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+.formulario .link_registro a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
 .formulario .form-registro {
   display: none;
 }

@@ -79,10 +79,11 @@ function ingresar_alumno(){
 
     //obtengo los datos desde los nodos.
     nombre_alumno = nombre.value;
-    inasistencias = parseInt(faltas.value);
+    nombre.focus();
     nota_pri_trim = parseFloat(pri_trim.value);
     nota_sec_trim = parseFloat(sec_trim.value);
     nota_ter_trim = parseFloat(ter_trim.value);
+    inasistencias = parseInt(faltas.value);
     promedio = "";
     estado = "";
     
@@ -197,6 +198,21 @@ function borrar_alumno(e){
     lista_alumnos = alumnos_filtrados;
     mostrar_alumnos();
     localStorage.setItem ("alumnos_almacenados", JSON.stringify(lista_alumnos));
+    Toastify({
+
+        text: "Alumno Eliminado",
+        duration: 800,
+        gravity: "bottom",
+        position: "left",
+        style: {
+            color:"red",
+            background: "yellow",
+            border: '1px solid #4CAF50', 
+          },
+          offset: { 
+            y: 180,
+          },
+        }).showToast();
 }
 
 function mostrar_estadisticas(){
